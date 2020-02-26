@@ -1,0 +1,78 @@
+easy_admin:
+  design:
+    # ...
+
+    # this is the default form theme used by backends
+    form_theme: '@EasyAdmin/form/bootstrap_4.html.twig'
+  #
+  #        # you can use your own form theme
+  #        form_theme: '@App/form/custom_layout.html.twig'
+
+  #        # you can also define an array of form themes to use all of them
+  #        form_theme:
+  #            - 'admin/form/custom_layout.html.twig'
+  #            - 'form_div_layout.html.twig'
+  #            - '@EasyAdmin/form/bootstrap_4.html.twig'
+  entities:
+    # List the entity class name you want to manage
+    Car:
+      class: App\Entity\Car
+    Agency:
+      class: App\Entity\Agency
+    Command:
+      class: App\Entity\Command
+    CarOption:
+      class: App\Entity\CarOption
+    CarType:
+      class: App\Entity\CarType
+    AgencySubscription:
+      class: App\Entity\AgencySubscription
+    Subscription:
+      class: App\Entity\Subscription
+    User:
+      class: App\Entity\User
+      form:
+        fields:
+          - first_name
+          - last_name
+          - email
+          - username
+          - plainPassword
+          - property: type
+            type: 'choice'
+            type_options:
+              choices:
+                'user': 'Utilisateur'
+                'agency': 'Agence'
+                'admin': 'Admin'
+
+          - enabled
+          - roles
+    Offer:
+      class: App\Entity\Offer
+    Coupon:
+      class: App\Entity\Coupon
+    Review:
+      class: App\Entity\Review
+    AgencyReview:
+      class: App\Entity\AgencyReview
+    CarImage:
+      class: App\Entity\CarImage
+      form:
+        fields:
+          - { property: 'file', type: 'vich_image' }
+          - 'status'
+      list:
+        fields:
+          - id
+          - car
+          - status
+          - { property: 'path', type: 'image', base_path: '%app.path.cars_images%' }
+
+      show:
+        fields:
+          - id
+          - car
+          - status
+          - { property: 'path', type: 'image', base_path: '%app.path.cars_images%' }
+
